@@ -3,6 +3,7 @@ import './App.css'
 import { Route } from 'react-router-dom'
 import ListBooks from './ListBooks'
 import SearchBooks from './SearchBooks'
+import * as BooksAPI from './utils/BooksAPI'
 
 const defaultBooks =
   [
@@ -68,23 +69,22 @@ class App extends React.Component {
      books : []
   }
 
-  componentWillMount(){
-    console.log('mounted')
-    this.setState({
-      books: defaultBooks
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({books})
     })
   }
 
-  handleShelfUpdate = (shelf, book) => {
-    const newbooks = this.state.books
-    newbooks[book.id].bookshelf = shelf
-    this.setState((state) => {
-      books: newbooks
-    })
+  handleShelfUpdate = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() =>
+      BooksAPI.getAll().then((books) => {
+        this.setState({books})
+      })
+    )
   }
 
   render() {
-    //console.log(this.state)
+    console.log(this.state.books)
     return (
       <div className="app">
 

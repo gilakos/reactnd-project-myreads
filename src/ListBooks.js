@@ -26,13 +26,13 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {books.filter(book => book.bookshelf==='currentlyReading').map((book) =>
+                  {books.filter(book => book.shelf==='currentlyReading').map((book) =>
                     <li key={book.id}>
                       <div className="book">
                         <div className="book-top">
-                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.cover})` }}></div>
+                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select onChange={(event) => handleShelfUpdate(event.target.value, book)} value="currentlyReading">
+                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value="currentlyReading">
                               <option value="none" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -42,7 +42,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.author}</div>
+                        <div className="book-authors">{book.authors[0]}</div>
                       </div>
                     </li>
                   )
@@ -54,13 +54,13 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {books.filter(book => book.bookshelf==='wantToRead').map((book) =>
+                  {books.filter(book => book.shelf==='wantToRead').map((book) =>
                     <li key={book.id}>
                       <div className="book">
                         <div className="book-top">
-                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.cover})` }}></div>
+                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select onChange={(event) => handleShelfUpdate(event.target.value, book)} value="wantToRead">
+                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value="wantToRead">
                               <option value="none" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -70,7 +70,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.author}</div>
+                        <div className="book-authors">{book.authors[0]}</div>
                       </div>
                     </li>
                   )
@@ -82,13 +82,13 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {books.filter(book => book.bookshelf==='read').map((book) =>
+                  {books.filter(book => book.shelf==='read').map((book) =>
                     <li key={book.id}>
                       <div className="book">
                         <div className="book-top">
-                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.cover})` }}></div>
+                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select onChange={(event) => handleShelfUpdate(event.target.value, book)} value="read">
+                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value="read">
                               <option value="none" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -98,7 +98,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.author}</div>
+                        <div className="book-authors">{book.authors[0]}</div>
                       </div>
                     </li>
                   )

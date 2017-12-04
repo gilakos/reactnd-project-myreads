@@ -10,8 +10,6 @@ class ListBooks extends Component {
 
   state = { }
 
-
-
   render(){
     const { books, handleShelfUpdate } = this.props
     //console.log(this.state.books)
@@ -32,7 +30,7 @@ class ListBooks extends Component {
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value="currentlyReading">
+                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value={book.shelf}>
                               <option value="none" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -42,7 +40,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors[0]}</div>
+                        <div className="book-authors">{book.authors && book.authors[0]}</div>
                       </div>
                     </li>
                   )
@@ -60,7 +58,7 @@ class ListBooks extends Component {
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value="wantToRead">
+                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value={book.shelf}>
                               <option value="none" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -70,7 +68,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors[0]}</div>
+                        <div className="book-authors">{book.authors && book.authors[0]}</div>
                       </div>
                     </li>
                   )
@@ -88,7 +86,7 @@ class ListBooks extends Component {
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value="read">
+                            <select onChange={(event) => handleShelfUpdate(book, event.target.value)} value={book.shelf}>
                               <option value="none" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -98,7 +96,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors[0]}</div>
+                        <div className="book-authors">{book.authors && book.authors[0]}</div>
                       </div>
                     </li>
                   )
